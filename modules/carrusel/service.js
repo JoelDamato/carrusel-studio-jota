@@ -30,6 +30,10 @@ function normalizeAspect(aspect) {
 function buildSlidePrompts(userPrompt, options = {}) {
   const brand = String(options.brand || '').trim();
   const audience = String(options.audience || '').trim();
+  const objective = String(options.objective || '').trim();
+  const offer = String(options.offer || '').trim();
+  const mainProblem = String(options.mainProblem || '').trim();
+  const transformation = String(options.transformation || '').trim();
   const visualStyle = String(options.visualStyle || '').trim();
   const cta = String(options.cta || '').trim();
   const slides = Math.max(1, Math.min(Number(options.slides || 4), 8));
@@ -39,6 +43,10 @@ function buildSlidePrompts(userPrompt, options = {}) {
     userPrompt,
     brand ? `Brand context: ${brand}.` : '',
     audience ? `Target audience: ${audience}.` : '',
+    objective ? `Marketing objective: ${objective}.` : '',
+    offer ? `Product or service: ${offer}.` : '',
+    mainProblem ? `Core problem to dramatize: ${mainProblem}.` : '',
+    transformation ? `Promised transformation: ${transformation}.` : '',
     visualStyle ? `Visual direction: ${visualStyle}.` : '',
     'No text overlay, no watermark, no logo lockup, no UI screenshot.',
     'High contrast composition, clean focal point, premium art direction.',
@@ -99,6 +107,10 @@ function pickTopic(userPrompt, brand) {
 function bodyLineFromOptions(options = {}) {
   const parts = [];
   if (options.audience) parts.push(`Pensado para ${options.audience}.`);
+  if (options.objective) parts.push(`Objetivo: ${options.objective}.`);
+  if (options.offer) parts.push(`Oferta: ${options.offer}.`);
+  if (options.mainProblem) parts.push(`Problema central: ${options.mainProblem}.`);
+  if (options.transformation) parts.push(`Transformacion prometida: ${options.transformation}.`);
   if (options.visualStyle) parts.push(`Estetica ${options.visualStyle}.`);
   if (options.brand) parts.push(`Territorio visual de ${options.brand}.`);
   return parts.join(' ');
