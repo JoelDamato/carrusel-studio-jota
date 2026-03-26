@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Armador de prompts para carruseles</title>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              border: 'hsl(0 0% 18%)',
+              input: 'hsl(0 0% 18%)',
+              ring: 'hsl(39 74% 62%)',
+              background: 'hsl(0 0% 4%)',
+              foreground: 'hsl(0 0% 96%)',
+              primary: {
+                DEFAULT: 'hsl(39 74% 62%)',
+                foreground: 'hsl(0 0% 6%)'
+              },
+              secondary: {
+                DEFAULT: 'hsl(0 0% 10%)',
+                foreground: 'hsl(0 0% 96%)'
+              },
+              muted: {
+                DEFAULT: 'hsl(0 0% 10%)',
+                foreground: 'hsl(0 0% 66%)'
+              },
+              accent: {
+                DEFAULT: 'hsl(0 0% 10%)',
+                foreground: 'hsl(0 0% 96%)'
+              },
+              card: {
+                DEFAULT: 'hsla(0, 0%, 8%, 0.88)',
+                foreground: 'hsl(0 0% 96%)'
+              }
+            },
+            fontFamily: {
+              display: ['"Cormorant Garamond"', 'serif'],
+              sans: ['Manrope', 'sans-serif']
+            },
+            boxShadow: {
+              premium: '0 24px 80px rgba(0,0,0,.45)'
+            }
+          }
+        }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <div class="page-noise"></div>
+    <main class="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+      <header class="mb-6 flex items-center justify-between rounded-2xl border border-border/70 bg-card/80 px-5 py-4 shadow-premium backdrop-blur">
+        <div class="flex items-center gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-primary">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.34em] text-primary/80">Instagram Prompt System</p>
+            <h1 class="text-lg font-semibold tracking-tight">Armador de prompts para carruseles</h1>
+          </div>
+        </div>
+        <a
+          href="https://www.instagram.com/jota.d3v/"
+          target="_blank"
+          rel="noreferrer"
+          class="hidden rounded-full border border-border bg-secondary px-4 py-2 text-xs font-medium text-muted-foreground transition hover:border-primary/40 hover:text-primary sm:inline-flex"
+        >
+          @jota.d3v
+        </a>
+      </header>
+
+      <section class="hero-panel relative overflow-hidden rounded-[32px] border border-border/80 bg-card/85 p-6 shadow-premium backdrop-blur sm:p-8 lg:p-10">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,214,102,.22),transparent_24%),radial-gradient(circle_at_left_center,rgba(255,255,255,.08),transparent_18%)]"></div>
+        <div class="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                Creador de carruseles por jota
+              </div>
+              <a
+                href="https://www.instagram.com/jota.d3v/"
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-300 transition hover:border-primary/30 hover:text-primary"
+              >
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+                @jota.d3v
+              </a>
+            </div>
+            <div class="max-w-3xl space-y-4">
+              <p class="text-sm uppercase tracking-[0.38em] text-zinc-500">Prompt engineering premium</p>
+              <h2 class="font-display text-5xl leading-none text-zinc-50 sm:text-6xl lg:text-7xl">
+                Pedís la idea y te llevás un
+                <span class="text-primary">pack de prompts</span>
+                listo para tu generador de imágenes
+              </h2>
+              <p class="max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg">
+                Este producto no genera imágenes. Te arma una secuencia de prompts para carrusel,
+                con dirección visual consistente, para que después la pegues en tu IA favorita.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 text-sm text-zinc-300">
+              <div class="rounded-full border border-border bg-secondary px-4 py-2">Hook a CTA</div>
+              <div class="rounded-full border border-border bg-secondary px-4 py-2">Estética premium</div>
+              <div class="rounded-full border border-border bg-secondary px-4 py-2">Listo para copiar</div>
+            </div>
+          </div>
+
+          <aside class="grid gap-4 rounded-3xl border border-white/10 bg-black/40 p-4">
+            <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-primary/20 to-transparent p-4">
+              <p class="text-[11px] uppercase tracking-[0.28em] text-primary/80">Uso ideal</p>
+              <p class="mt-2 text-2xl font-semibold text-zinc-50">Prompt pack de alto nivel</p>
+              <p class="mt-2 text-sm leading-6 text-zinc-400">
+                Escribís el brief una vez y te llevás los prompts slide por slide para producir después en Midjourney, GPT Images, Flux o lo que uses.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Firma</p>
+                <a
+                  href="https://www.instagram.com/jota.d3v/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="mt-2 inline-flex text-lg font-semibold text-zinc-100 transition hover:text-primary"
+                >
+                  @jota.d3v
+                </a>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p class="text-xs uppercase tracking-[0.28em] text-zinc-500">Salida</p>
+                <p class="mt-2 text-lg font-semibold">Prompts</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="mt-6 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="rounded-[28px] border border-border/80 bg-card/85 p-5 shadow-premium backdrop-blur sm:p-6">
+          <div class="mb-5 flex items-center justify-between gap-3">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-zinc-500">Brief</p>
+              <h3 class="mt-1 text-2xl font-semibold tracking-tight">Dirección creativa</h3>
+            </div>
+            <span id="providerBadge" class="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              Modo premium
+            </span>
+          </div>
+
+          <div id="chatMessages" class="custom-scroll grid min-h-[260px] gap-3 overflow-auto pr-1">
+            <div class="msg assistant">
+              Contame la idea del carrusel y te devuelvo una secuencia de prompts lista para pegar en tu generador de imágenes.
+            </div>
+          </div>
+
+          <form id="chatForm" class="mt-5 grid gap-4">
+            <textarea id="promptInput" rows="5" class="min-h-[140px] rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20" placeholder="Ej: Quiero un carrusel para vender una mentoría de negocios premium para fundadores, con tono oscuro, elegante y agresivamente convincente."></textarea>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <input id="brandInput" type="text" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20" placeholder="Marca o proyecto" />
+              <input id="audienceInput" type="text" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20" placeholder="Audiencia" />
+              <input id="ctaInput" type="text" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20" placeholder="CTA o cierre" />
+              <input id="styleInput" type="text" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20" placeholder="Estilo visual" />
+            </div>
+
+            <div class="flex flex-wrap items-end gap-3">
+              <label class="grid gap-2 text-sm text-zinc-300">
+                <span>Formato</span>
+                <select id="aspectInput" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20">
+                  <option value="portrait">4:5</option>
+                  <option value="square">1:1</option>
+                  <option value="landscape">3:2</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm text-zinc-300">
+                <span>Slides</span>
+                <select id="slidesInput" class="rounded-2xl border border-input bg-secondary px-4 py-3 text-sm text-zinc-50 outline-none transition focus:border-primary/60 focus:ring-2 focus:ring-primary/20">
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </label>
+              <button type="submit" class="inline-flex h-12 items-center justify-center rounded-2xl bg-primary px-5 font-semibold text-primary-foreground transition hover:brightness-105">
+                Armar prompts
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="rounded-[28px] border border-border/80 bg-card/85 p-5 shadow-premium backdrop-blur sm:p-6">
+          <div class="mb-5 flex items-center justify-between gap-3">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-zinc-500">Output</p>
+              <h3 class="mt-1 text-2xl font-semibold tracking-tight">Pack de prompts</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button id="copyPromptsBtn" class="inline-flex h-11 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 px-4 text-sm font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground" type="button">
+                Copiar pack
+              </button>
+              <button id="downloadPromptsBtn" class="inline-flex h-11 items-center justify-center rounded-2xl border border-border bg-secondary px-4 text-sm font-semibold text-zinc-100 transition hover:border-primary/30 hover:text-primary" type="button">
+                Descargar TXT
+              </button>
+            </div>
+          </div>
+          <p class="mb-4 text-sm leading-6 text-zinc-400">
+            Revisá cada prompt, ajustalo si querés, y después pegalo en tu generador de imágenes favorito slide por slide.
+          </p>
+          <div id="promptList" class="grid gap-3"></div>
+          <div id="usageGuide" class="export-guide mt-5"></div>
+        </div>
+      </section>
+
+      <footer class="mt-6 flex flex-col gap-2 px-1 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+        <p>Armador de prompts para carruseles, creador de carruseles por jota.</p>
+        <p>
+          <a href="https://www.instagram.com/jota.d3v/" target="_blank" rel="noreferrer" class="transition hover:text-primary">
+            Seguime en Instagram: @jota.d3v
+          </a>
+        </p>
+      </footer>
+    </main>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrusel Studio Local</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --line: #d8e1ee;
+        --text: #152b4a;
+        --muted: #5a7294;
+        --accent: #1f73e0;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 16px;
+        background: var(--bg);
+        color: var(--text);
+        font: 14px/1.45 Inter, system-ui, sans-serif;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 10px 30px rgba(18, 47, 91, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0 0 14px;
+        color: var(--muted);
+      }
+
+      form {
+        display: grid;
+        gap: 10px;
+      }
+
+      textarea,
+      input,
+      select,
+      button {
+        width: 100%;
+        border-radius: 12px;
+        font: inherit;
+      }
+
+      textarea,
+      input,
+      select {
+        border: 1px solid var(--line);
+        padding: 12px;
+        background: #fff;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      button {
+        border: 0;
+        padding: 12px 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .secondary {
+        background: #eaf1fb;
+        color: var(--text);
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .status {
+        min-height: 20px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Carrusel Studio Local</h1>
+      <p>Escribí el pedido y te armo los slides directo en Figma usando tu servidor local.</p>
+
+      <form id="form">
+        <textarea id="prompt" rows="5" placeholder="Ej: Carrusel para vender mentoría financiera premium para dueños de pymes."></textarea>
+        <div class="grid">
+          <input id="brand" type="text" placeholder="Marca" />
+          <input id="audience" type="text" placeholder="Audiencia" />
+          <input id="cta" type="text" placeholder="CTA" />
+          <input id="visualStyle" type="text" placeholder="Estilo visual" />
+          <select id="aspect">
+            <option value="portrait">4:5</option>
+            <option value="square">1:1</option>
+            <option value="landscape">3:2</option>
+          </select>
+          <select id="slides">
+            <option value="4">4 slides</option>
+            <option value="5">5 slides</option>
+            <option value="6">6 slides</option>
+          </select>
+        </div>
+        <input id="serverUrl" type="text" value="http://localhost:3005" />
+        <div class="status" id="status"></div>
+        <div class="actions">
+          <button type="submit" class="primary">Crear en Figma</button>
+          <button type="button" class="secondary" id="cancelBtn">Cerrar</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById('form');
+      const statusNode = document.getElementById('status');
+
+      function setStatus(text) {
+        statusNode.textContent = text || '';
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const payload = {
+          prompt: document.getElementById('prompt').value.trim(),
+          brand: document.getElementById('brand').value.trim(),
+          audience: document.getElementById('audience').value.trim(),
+          cta: document.getElementById('cta').value.trim(),
+          visualStyle: document.getElementById('visualStyle').value.trim(),
+          aspect: document.getElementById('aspect').value,
+          aspectLabel: document.getElementById('aspect').selectedOptions[0].textContent,
+          slides: Number(document.getElementById('slides').value)
+        };
+
+        const serverUrl = document.getElementById('serverUrl').value.trim().replace(/\/$/, '');
+
+        if (!payload.prompt) {
+          setStatus('Escribí primero el pedido del carrusel.');
+          return;
+        }
+
+        setStatus('Armando la estructura del carrusel...');
+
+        try {
+          const response = await fetch(`${serverUrl}/api/carrusel/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(data.message || `Error ${response.status}`);
+          }
+
+          parent.postMessage({
+            pluginMessage: {
+              type: 'create-carousel',
+              payload,
+              response: data
+            }
+          }, '*');
+          setStatus('Enviando slides a Figma...');
+        } catch (error) {
+          setStatus(error.message || 'No pude conectar con el servidor local.');
+        }
+      });
+
+      document.getElementById('cancelBtn').addEventListener('click', () => {
+        parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+      });
+    </script>
+  </body>
+</html>
